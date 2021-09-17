@@ -73,7 +73,7 @@ pipeline {
         }
         stage('for the test branch'){
             when {
-                branch 'fix-*'
+                branch 'test_*'
             }
             steps {
                 echo 'this only runs for test branch'
