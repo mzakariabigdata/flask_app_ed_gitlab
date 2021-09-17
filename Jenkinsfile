@@ -49,8 +49,9 @@ pipeline {
                 docker { image 'sonarsource/sonar-scanner-cli' }
             }
             steps {
-                echo 'Test Quality'
+                
                 script{
+                    echo 'Test Quality'
                     // sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." -D"sonar.host.url=http://172.26.229.230:9000" -D"sonar.login=1f997e8aeffefaa2659eab04955f631960602389"'
                     // def qg = waitForQualityGate()
                     // if (qg.status != 'OK') {
