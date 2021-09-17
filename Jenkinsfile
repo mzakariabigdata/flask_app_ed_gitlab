@@ -71,6 +71,22 @@ pipeline {
                 echo 'Test Tag'
             }
         }
+        stage('for the test branch'){
+            when {
+                branch 'fix-*'
+            }
+            steps {
+                echo 'this only runs for test branch'
+            }
+        }
+        stage('for the main branch'){
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'this only runs for test branch'
+            }
+        }
         stage('Publish'){
             steps {
                 echo 'Test Publish'
