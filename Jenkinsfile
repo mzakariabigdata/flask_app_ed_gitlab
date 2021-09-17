@@ -1,6 +1,4 @@
-
-properties([pipelineTriggers([githubPush()])])
-
+@library("shared-lib") _
 
 pipeline {
     agent any
@@ -71,6 +69,11 @@ pipeline {
                 echo 'Test Tag'
             }
         }
+        stage('Shared lib'){
+            steps {
+                helloWord()
+            }
+        }
         stage('for the test branch'){
             when {
                 branch 'test_*'
@@ -87,7 +90,7 @@ pipeline {
                 echo 'this only runs for test branch'
             }
         }
-        stage('nexus Publish seconde'){
+        stage('nexus Publish'){
 
             steps {
                 echo 'Test Publish'
