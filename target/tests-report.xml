@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="3" hostname="DESKTOP-21C46J1" name="pytest" skipped="0" tests="11" time="0.265" timestamp="2021-09-15T21:49:44.498032"><testcase classname="tests.Pytest_Module.test_fixtures_simples" name="test_getItem" time="0.003" /><testcase classname="tests.Pytest_Module.test_markers" name="test_str1" time="0.002" /><testcase classname="tests.Pytest_Module.test_markers" name="test_str2" time="0.001" /><testcase classname="tests.Pytest_Module.test_markers" name="test_str3" time="0.002"><failure message="assert (1 + 2) == 5">&gt;   ???
+E   assert (1 + 2) == 5
+
+C:\Users\morch\Documents\workspaces\flask_app_ed\app\Pytest_Module\test_markers.py:19: AssertionError</failure></testcase><testcase classname="tests.Pytest_Module.test_module01" name="test_a1" time="0.002"><failure message="assert (5 + 5) == 11">&gt;   ???
+E   assert (5 + 5) == 11
+
+C:\Users\morch\Documents\workspaces\flask_app_ed\app\Pytest_Module\test_module01.py:4: AssertionError</failure></testcase><testcase classname="tests.Pytest_Module.test_module01" name="test_a2" time="0.001" /><testcase classname="tests.Pytest_Module.test_module01.TestMyStuff" name="test_type" time="0.001" /><testcase classname="tests.Pytest_Module.test_module01.TestMyStuff" name="test_strs" time="0.001" /><testcase classname="tests.Pytest_Module.test_module02" name="test_case01" time="0.002" /><testcase classname="tests.Pytest_Module.test_module02" name="test_case02" time="0.002" /><testcase classname="tests.Pytest_Module.test_module02" name="test_case03" time="0.001"><failure message="TypeError: exceptions must derive from BaseException">&gt;   ???
+E   TypeError: exceptions must derive from BaseException
+
+C:\Users\morch\Documents\workspaces\flask_app_ed\app\Pytest_Module\test_module02.py:23: TypeError</failure></testcase></testsuite></testsuites>
