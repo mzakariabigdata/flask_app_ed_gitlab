@@ -71,7 +71,7 @@ pipeline {
         }
         stage('Shared lib'){
             steps {
-                helloWord()
+                helloWorld()
             }
         }
         stage('for the test branch'){
