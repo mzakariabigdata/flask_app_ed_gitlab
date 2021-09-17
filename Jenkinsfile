@@ -88,6 +88,7 @@ pipeline {
             }
         }
         stage('nexus Publish seconde'){
+
             steps {
                 echo 'Test Publish'
             }
