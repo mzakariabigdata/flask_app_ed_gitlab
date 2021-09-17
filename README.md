@@ -24,6 +24,7 @@ sudo docker run --detach \
   --volume $GITLAB_HOME/data:/var/opt/gitlab \
   gitlab/gitlab-ee:latest
 root ZSJ/OvZAPShCXTUHFKmmor19++bCFf6D56FAnBg9dLk=
+token jenkins-api CrbfPrx-d6icPho7t_e5
 ### install plugin
 error : WorkflowScript: 2: Invalid agent type "docker" specified. Must be one of [any, label, none] @ line 2, column 13.
 solution :
