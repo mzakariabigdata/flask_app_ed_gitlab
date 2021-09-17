@@ -71,7 +71,7 @@ pipeline {
         }
         stage('Shared lib'){
             steps {
-                helloWorld()
+                helloWorld(dayOfWeek: "Mardi", name: "Zakaria")
             }
         }
         stage('for the test branch'){
