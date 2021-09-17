@@ -11,7 +11,8 @@ sudo  yum install ifconfig
 #### Jenkins (mount docker socket)
     docker run -d --name jenkins -u root -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v /home/jenkins_home:/var/jenkins_home jenkins/jenkins
 #### SonarQube
-    docker run -d --name sonarqube -p 9000:9000 sonarqube
+    docker run -d --name sonarqube -p 9000:9000 
+    admin root
 #### Gitlab https://docs.gitlab.com/ee/install/docker.html
 export GITLAB_HOME=$HOME/gitlab
 sudo docker run --detach \
@@ -25,6 +26,8 @@ sudo docker run --detach \
   gitlab/gitlab-ee:latest
 root ZSJ/OvZAPShCXTUHFKmmor19++bCFf6D56FAnBg9dLk=
 token jenkins-api CrbfPrx-d6icPho7t_e5
+#### nexus
+  docker run -d -p 8081:8081 --name nexus sonatype/nexus3
 ### install plugin
 error : WorkflowScript: 2: Invalid agent type "docker" specified. Must be one of [any, label, none] @ line 2, column 13.
 solution :

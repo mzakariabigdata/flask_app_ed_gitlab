@@ -87,7 +87,7 @@ pipeline {
                 echo 'this only runs for test branch'
             }
         }
-        stage('Publish'){
+        stage('nexus Publish'){
             steps {
                 echo 'Test Publish'
             }
