@@ -77,13 +77,6 @@ pipeline {
             }
         }
 
-        // stage('Quality Gate'){
-        //     steps {
-        //         timeout(time: 3, unit: 'MINUTES'){
-        //             waitForQualityGate abortPipeline: true
-        //         }
-        //     }
-        // }
         stage('Package'){
             steps {
                 echo 'Test Package'
