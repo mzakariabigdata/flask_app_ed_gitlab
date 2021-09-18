@@ -67,6 +67,7 @@ pipeline {
         stage('Tag'){
             steps {
                 echo 'Test Tag 1'
+
             }
         }
         stage('Shared lib'){
