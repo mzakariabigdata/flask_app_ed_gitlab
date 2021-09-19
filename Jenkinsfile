@@ -80,7 +80,8 @@ pipeline {
             
         stage("Quality Gate") {
             
-                steps {
+            steps {
+                script {
                     if(params.USE_SONAR) {
                         timeout(time: 2, unit: 'MINUTES') {
                         waitForQualityGate abortPipeline: true
@@ -88,7 +89,8 @@ pipeline {
                     } else {
                     echo "no need for Quality Gate"
                     }
-                }   
+                }
+            }   
         }
         stage("Quality Gate") {
             steps {
