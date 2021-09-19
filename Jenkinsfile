@@ -50,11 +50,11 @@ pipeline {
                 
                 script{
                     echo 'Test Quality'
-                    // withSonarQubeEnv(installationName: 'sq1'){
-                    //         sh 'sonar-scanner -D"sonar.sources=."'
-                    // }
-                    sh 'echo $PATH'
-                    sh 'which sonar-scanner'
+                    withSonarQubeEnv(installationName: 'sq1'){
+                            sh '/opt/sonar-scanner/bin/sonar-scanner  -D"sonar.sources=."'
+                    }
+                    // sh 'echo $PATH'
+                    // sh 'which sonar-scanner'
                     // sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." -D"sonar.host.url=http://172.26.229.230:9000" -D"sonar.login=1f997e8aeffefaa2659eab04955f631960602389"'
                     
                     // timeout(time: 3, unit: 'MINUTES'){
