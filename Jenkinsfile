@@ -23,6 +23,11 @@ pipeline {
                 pip install -r requirements.txt
                 '''
             }
+            post {
+                success {
+                    archiveArtifacts 'src/app.py'
+                }
+            }
         }
         stage('Test'){
             agent {
@@ -64,13 +69,14 @@ pipeline {
                 
             }
         }
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 2, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // niice
+        // stage("Quality Gate") {
+        //     steps {
+        //         timeout(time: 2, unit: 'MINUTES') {
+        //         waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
 
         stage('Package'){
             steps {
