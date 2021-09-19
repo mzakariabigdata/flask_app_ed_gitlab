@@ -25,7 +25,7 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts 'src/app.py'
+                    archiveArtifacts 'app/app.py'
                 }
             }
         }
