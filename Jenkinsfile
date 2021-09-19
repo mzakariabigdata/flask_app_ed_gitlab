@@ -36,11 +36,11 @@ pipeline {
                 python -m pytest tests/ --junitxml=target/tests-report.xml  --cov-report term --cov-report xml:target/coverage-report.xml  --cov=app
                 '''
             }
-            post {
-                always{
-                    junit allowEmptyResults: true, testResults:'target/tests-report.xml'
-                }
-            }
+            // post {
+            //     always{
+            //         junit allowEmptyResults: true, testResults:'target/tests-report.xml'
+            //     }
+            // }
         }
         stage('Scan Sonar') {
             agent {
@@ -53,13 +53,14 @@ pipeline {
                     withSonarQubeEnv(installationName: 'sq1'){
                             sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." '
                     }
-                    // sh 'echo $PATH'
-                    // sh 'which sonar-scanner'
                     // sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." -D"sonar.host.url=http://172.26.229.230:9000" -D"sonar.login=1f997e8aeffefaa2659eab04955f631960602389"'
                     
+<<<<<<< HEAD
                     // timeout(time: 3, unit: 'MINUTES'){
                     //     waitForQualityGate abortPipeline: true
                     // }
+=======
+>>>>>>> 15c0950 (test stage)
                     // def qg = waitForQualityGate()
                     // if (qg.status != 'OK') {
                     //     error "Pipeline aborted due to quality gate failure: ${qg.status}"
@@ -70,7 +71,6 @@ pipeline {
         }
         stage("Quality Gate") {
             steps {
-                 sh "env | sort"
                 timeout(time: 2, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
                 }
