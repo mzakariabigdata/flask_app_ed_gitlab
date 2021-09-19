@@ -23,6 +23,11 @@ pipeline {
                 pip install -r requirements.txt
                 '''
             }
+            post {
+                success {
+                    archiveArtifacts 'src/app.py'
+                }
+            }
         }
         stage('Test'){
             agent {
@@ -71,6 +76,7 @@ pipeline {
                 }
             }
         }
+
         stage('Package'){
             steps {
                 echo 'Test Package'
