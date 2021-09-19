@@ -56,37 +56,39 @@ pipeline {
             agent {
                 docker { image 'sonarsource/sonar-scanner-cli' }
             }
-            if(params.USE_SONAR) {
                 steps {
                     script{
-                        echo 'Test Quality'
-                        withSonarQubeEnv(installationName: 'sq1'){
-                                sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." '
-                        }
-                        // bnp function
-                        // sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." -D"sonar.host.url=http://172.26.229.230:9000" -D"sonar.login=1f997e8aeffefaa2659eab04955f631960602389"'
-                        // def qg = waitForQualityGate()
-                        // if (qg.status != 'OK') {
-                        //     error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        // }
+                        if(params.USE_SONAR) {
+
+                            echo 'Test Quality'
+                            withSonarQubeEnv(installationName: 'sq1'){
+                                    sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." '
+                            }
+                            // bnp function
+                            // sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." -D"sonar.host.url=http://172.26.229.230:9000" -D"sonar.login=1f997e8aeffefaa2659eab04955f631960602389"'
+                            // def qg = waitForQualityGate()
+                            // if (qg.status != 'OK') {
+                            //     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                            // }
+                        }else {
+                        echo "no need for Quality Gate"
                     }
+                }
+            }
                     
-                }
-            } else {
-                echo "no need for Quality Gate"
-            }
         }
-        stage("Quality Gate") {
-            if(params.USE_SONAR) {
-                steps {
-                    timeout(time: 2, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                    }
-                }
-            } else {
-                echo "no need for Quality Gate"
-            }
             
+        stage("Quality Gate") {
+            
+                steps {
+                    if(params.USE_SONAR) {
+                        timeout(time: 2, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: true
+                        }
+                    } else {
+                    echo "no need for Quality Gate"
+                    }
+                }   
         }
         stage("Quality Gate") {
             steps {
