@@ -73,7 +73,7 @@ pipeline {
                             //     error "Pipeline aborted due to quality gate failure: ${qg.status}"
                             // }
                         }else {
-                        echo "no need for Quality Gate"
+                        echo "no need for Scan Sonar"
                     }
                 }
             }
