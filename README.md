@@ -13,6 +13,7 @@ sudo  yum install ifconfig
 #### SonarQube
     docker run -d --name sonarqube -p 9000:9000 
     admin root
+    admin 08d9a207237e3b9422bd076c94896b739bb78017
 #### Gitlab https://docs.gitlab.com/ee/install/docker.html
 export GITLAB_HOME=$HOME/gitlab
 sudo docker run --detach \
