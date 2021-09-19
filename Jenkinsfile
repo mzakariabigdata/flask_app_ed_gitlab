@@ -36,21 +36,37 @@ pipeline {
                 }
             }
         }
-        stage('Test'){
-            agent {
-                docker { image 'python:3.7.0' }
-            }
-            steps {
-                echo 'Test stage'
-                sh '''
-                . venv/bin/activate
-                pip install -r tests/requirements.txt
-                python -m pytest tests/ --junitxml=target/tests-report.xml  --cov-report term --cov-report xml:target/coverage-report.xml  --cov=app
-                '''
-            }
-            post {
-                always{
-                    junit allowEmptyResults: true, testResults:'target/tests-report.xml, target/coverage-report.xml'
+        stage('Run Tests'){
+            parallel {
+                stage('Test backend') {
+                    agent {
+                        docker { image 'python:3.7.0' }
+                    }
+                    steps {
+                        echo 'Test stage backend'
+                        sh '''
+                        . venv/bin/activate
+                        pip install -r tests/requirements.txt
+                        python -m pytest tests/ --junitxml=target/tests-report.xml  --cov-report term --cov-report xml:target/coverage-report.xml  --cov=app
+                        '''
+                    }
+                    post {
+                        always{
+                            junit allowEmptyResults: true, testResults:'target/tests-report.xml, target/coverage-report.xml'
+                        }
+                    }
+                }
+
+                stage('Test front') {
+                    agent {
+                        docker { image 'python:3.7.0' }
+                    }
+                    steps {
+                        script {
+                            echo 'Test stage front'
+                        }
+                        
+                    }
                 }
             }
         }
