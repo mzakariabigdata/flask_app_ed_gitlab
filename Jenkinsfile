@@ -1,12 +1,14 @@
 @Library("shared-lib") _
 
-parameters {
-
-        booleanParam(name: 'USE_SONAR', defaultValue: false, description: 'For Sonar Stage')
-    }
 
 pipeline {
     agent any
+
+    parameters {
+        booleanParam(name: 'USE_SONAR', defaultValue: false, description: 'For Sonar Stage')
+    }
+
+
     stages {
         stage('Checkout'){
             steps{
