@@ -51,7 +51,7 @@ pipeline {
                 script{
                     echo 'Test Quality'
                     withSonarQubeEnv(installationName: 'sq1'){
-                            sh 'sonar-scanner -X -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." -D"sonar.login=1f997e8aeffefaa2659eab04955f631960602389"'
+                            sh 'sonar-scanner -X -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." '
                     }
                     // sh 'echo $PATH'
                     // sh 'which sonar-scanner'
