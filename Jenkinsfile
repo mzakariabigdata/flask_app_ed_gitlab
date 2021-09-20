@@ -17,7 +17,7 @@ pipeline {
         ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
         gitlab_ACCESS_TOKEN = credentials('root_gitlab')
     }
- 
+  
     stages {
         stage('Checkout'){
             steps{
