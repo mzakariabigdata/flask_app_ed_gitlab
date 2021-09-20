@@ -31,11 +31,7 @@ pipeline {
                 pip install -e .
                 '''
             }
-            // post {
-            //     success {
-            //         archiveArtifacts 'app/app.py'
-            //     }
-            // }
+            
         }
         stage('Run Tests'){
             parallel {
