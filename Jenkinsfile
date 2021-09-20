@@ -113,6 +113,9 @@ pipeline {
         }
 
         stage('Package'){
+            agent {
+                docker { image 'python:3.7.0' }
+            }
             steps {
                 sh '''
                 python -m venv venv
