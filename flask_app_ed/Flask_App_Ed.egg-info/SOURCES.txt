@@ -1,7 +1,9 @@
+setup.cfg
 setup.py
 Flask_App_Ed.egg-info/PKG-INFO
 Flask_App_Ed.egg-info/SOURCES.txt
 Flask_App_Ed.egg-info/dependency_links.txt
+Flask_App_Ed.egg-info/not-zip-safe
 Flask_App_Ed.egg-info/requires.txt
 Flask_App_Ed.egg-info/top_level.txt
 app/__init__.py
@@ -10,3 +12,13 @@ app/config_app.py
 app/test_app_pytest.py
 app/test_app_unittest.py
 app/wsgi.py
+app/api/__init__.py
+app/api/restplus.py
+app/api/book/__init__.py
+app/api/book/api_definition.py
+app/api/book/domain_logic.py
+app/api/book/endpoints/__init__.py
+app/api/book/endpoints/book.py
+app/dba/__init__.py
+app/dba/db.py
+app/dba/models.py

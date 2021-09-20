@@ -1,5 +1,10 @@
 # flask_app_ed
-
+## Démarre app 
+cd C:\Users\morch\Documents\workspaces\flask_app_ed_gitlab\flask_app_ed
+pip install -e .
+$env:FLASK_APP = "app"
+$env:FLASK_ENV = "development"
+flask run
 ## Démarrage jenkins (agent Docker)
 ### Commande to boot toolchain
 #### vagrant
