@@ -15,12 +15,13 @@ pipeline {
     environment {
         CI = true
         ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
+        gitlab_ACCESS_TOKEN = credentials('root_gitlab')
     }
  
     stages {
         stage('Checkout'){
             steps{
-                git url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
+                git branch: 'main', credentialsId: gitlab_ACCESS_TOKEN, url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
             }
         }
         
