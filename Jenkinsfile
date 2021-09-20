@@ -7,7 +7,15 @@ pipeline {
     parameters {
         booleanParam(name: 'USE_SONAR', defaultValue: false, description: 'For Sonar Stage')
     }
+    
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '6'))
+    }
 
+    environment {
+        CI = true
+        ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
+    }
 
     stages {
         stage('Checkout'){
@@ -160,6 +168,19 @@ pipeline {
                 echo 'Test Publish'
             }
         }
+        stage('Upload to Artifactory') {
+            agent {
+                docker {
+                image 'releases-docker.jfrog.io/jfrog/jfrog-cli-v2:2.2.0' 
+                reuseNode true
+                }
+            }
+            steps {
+                echo 'Upload to Artifactory'
+                sh 'jfrog rt upload --url http://192.168.1.230:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} flask_app_ed/dist/* flask_app_ed_gitlab'
+            }
+        }
+
         stage('Xray'){
             steps {
                 echo 'Test Xray'

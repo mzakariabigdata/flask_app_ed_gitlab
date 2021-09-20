@@ -1,5 +1,5 @@
 # flask_app_ed
-## Démarre app 
+## Démarre flask app 
 cd C:\Users\morch\Documents\workspaces\flask_app_ed_gitlab\flask_app_ed
 pip install -e .
 $env:FLASK_APP = "app"
@@ -7,6 +7,11 @@ $env:FLASK_ENV = "development"
 flask run
 python setup.py sdist
 python setup.py install
+## artifactory
+docker run -d --name artifactory  -p 8081:8081 -p 8082:8082 docker.bintray.io/jfrog/artifactory-oss:latest
+Version:  7.25.7
+Artifactory Home: '/opt/jfrog/artifactory'
+eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJjNEJTeHYzSGZNZG1EdXZDUjRIMlVJMTBmQ2E5SWxiZWdRX1hpYW94QnJzIn0.eyJzdWIiOiJqZmZlQDAwMFwvdXNlcnNcL2FkbWluIiwic2NwIjoiYXBwbGllZC1wZXJtaXNzaW9uc1wvYWRtaW4gYXBpOioiLCJhdWQiOiIqQCoiLCJpc3MiOiJqZmZlQDAwMCIsImlhdCI6MTYzMjExODgyNCwianRpIjoiOTJjYmYyNGMtMjc1OC00MzNiLWJmZTMtZTg3MzU0ZTA4ODYwIn0.hH2cb0wsef2PBISfl-FLYcAbPOGjV3eMo65rCAtUjIUA8626ATghmr6DMy3ioE-j_-TJ33_2YkQ8raDDs6ZXNOXkv5FtHel7FHGyjTqSGFFwyZWtQnPYrAeMWY059FihFLCTHTyhe46lwdFT6USRSVN7a3EIXBjV529y5d_oDgbKAkAYi6IeWEPYNWIRRJ1-TbS3NpJ5x4KotTZeJGkEJTssfG_VplbjXmQE9g_Xeug4Lnlb_3F1b7JIy4JGcxpdpZOVRBTPwlQfONS2QD-Wm6jegeQEoQt7Rsfo7cW3D8obz7iK-bpRbRJRBk0cT321E0hwVOSzgNsHDgLD1QabkgZak_Zak!!01
 ## Démarrage jenkins (agent Docker)
 ### Commande to boot toolchain
 #### vagrant
