@@ -27,14 +27,15 @@ pipeline {
                 . venv/bin/activate
                 which python 
                 ls -l
-                pip install -r requirements.txt
+                cd flask_app_ed
+                pip install -e .
                 '''
             }
-            post {
-                success {
-                    archiveArtifacts 'app/app.py'
-                }
-            }
+            // post {
+            //     success {
+            //         archiveArtifacts 'app/app.py'
+            //     }
+            // }
         }
         stage('Run Tests'){
             parallel {
