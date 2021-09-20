@@ -39,7 +39,8 @@ sudo docker run --detach \
   --volume $GITLAB_HOME/data:/var/opt/gitlab \
   gitlab/gitlab-ee:latest
 root ZSJ/OvZAPShCXTUHFKmmor19++bCFf6D56FAnBg9dLk=
-token jenkins-api CrbfPrx-d6icPho7t_e5
+token jenkins-api xMVsWqzwCXXmMBE83ynD
+gitlab_root_project CQdgiV2jmPfg78Rxcboy
 #### nexus
   docker run -d -p 8081:8081 --name nexus sonatype/nexus3
 #### send mail (https://sendgrid.com/)
