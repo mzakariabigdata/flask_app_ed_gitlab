@@ -1,0 +1,12 @@
+setup.py
+Flask_App_Ed.egg-info/PKG-INFO
+Flask_App_Ed.egg-info/SOURCES.txt
+Flask_App_Ed.egg-info/dependency_links.txt
+Flask_App_Ed.egg-info/requires.txt
+Flask_App_Ed.egg-info/top_level.txt
+app/__init__.py
+app/app_old.py
+app/config_app.py
+app/test_app_pytest.py
+app/test_app_unittest.py
+app/wsgi.py
