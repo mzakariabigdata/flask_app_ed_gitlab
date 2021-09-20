@@ -24,7 +24,7 @@ pipeline {
                 git url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
             }
         }
-        
+         
         stage('Build') {
             agent {
                 docker { image 'python:3.7.0' }
