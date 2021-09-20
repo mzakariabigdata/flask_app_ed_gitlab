@@ -16,7 +16,7 @@ pipeline {
         CI = true
         ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-access-token')
     }
-
+ 
     stages {
         stage('Checkout'){
             steps{
