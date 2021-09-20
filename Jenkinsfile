@@ -21,10 +21,10 @@ pipeline {
     stages {
         stage('Checkout'){
             steps{
-                git url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
+                git branch: 'main', credentialsId: 'root_gitlab', url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
             }
         }
-         
+        
         stage('Build') {
             agent {
                 docker { image 'python:3.7.0' }
