@@ -40,7 +40,6 @@ sudo docker run --detach \
   gitlab/gitlab-ee:latest
 root ZSJ/OvZAPShCXTUHFKmmor19++bCFf6D56FAnBg9dLk=
 token jenkins-api CrbfPrx-d6icPho7t_e5
-root Zak_Zak!!01
 #### nexus
   docker run -d -p 8081:8081 --name nexus sonatype/nexus3
 #### send mail (https://sendgrid.com/)
