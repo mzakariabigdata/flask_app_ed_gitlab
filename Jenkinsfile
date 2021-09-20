@@ -114,7 +114,18 @@ pipeline {
 
         stage('Package'){
             steps {
-                echo 'Test Package'
+                sh '''
+                python -m venv venv
+                . venv/bin/activate
+                cd flask_app_ed
+                pip install -e .
+                python setup.py sdist
+                '''
+            }
+            post {
+                success {
+                    archiveArtifacts 'flask_app_ed/dist/*'
+                }
             }
         }
         stage('Tag'){

@@ -5,6 +5,8 @@ pip install -e .
 $env:FLASK_APP = "app"
 $env:FLASK_ENV = "development"
 flask run
+python setup.py sdist
+python setup.py install
 ## Démarrage jenkins (agent Docker)
 ### Commande to boot toolchain
 #### vagrant
