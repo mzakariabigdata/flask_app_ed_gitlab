@@ -21,15 +21,7 @@ pipeline {
     stages {
         stage('Checkout'){
             steps{
-                // git url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
-                 checkout([$class: 'GitSCM',
-                branches: [[name: '*/main' ]],
-                extensions: scm.extensions,
-                userRemoteConfigs: [[
-                    url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git',
-                    credentialsId: 'root_gitlab'
-                ]]
-            ])
+                git url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
             }
         }
          
