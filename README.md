@@ -30,7 +30,7 @@ sudo  yum install ifconfig
 #### Gitlab https://docs.gitlab.com/ee/install/docker.html
 export GITLAB_HOME=$HOME/gitlab
 sudo docker run --detach \
-  --hostname 172.28.114.195 \
+  --hostname 172.26.229.230 \
   --publish 443:443 --publish 80:80 --publish 23:22 \
   --name gitlab \
   --restart always \
