@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage('Checkout'){
             steps{
-                git branch: 'main', url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
+                git url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
             }
         }
         
