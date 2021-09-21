@@ -6,10 +6,10 @@ import requests
 import pytest
 import sqlite3 as mdb
 from flask import current_app
-from dba.models import Book
+from app.dba.models import Book
 
 from app import create_app
-from dba.models import db
+from app.dba.models import db
 
 
 url = 'http://127.0.0.1:5000/api/v1/books/'
