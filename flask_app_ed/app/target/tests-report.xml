@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="9" failures="1" hostname="DESKTOP-21C46J1" name="pytest" skipped="0" tests="14" time="2.516" timestamp="2021-09-21T16:14:53.508459"><testcase classname="flask_app_ed.app.test_app_pytest" name="test_is_open" time="0.017" /><testcase classname="flask_app_ed.app.test_app_pytest" name="test_root_front" time="0.081" /><testcase classname="flask_app_ed.app.test_app_pytest" name="test_empty_db_status" time="0.008"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_2', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F790AE8&gt;), kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_empty_db_type" time="0.004"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_3', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F841A60&gt;), kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_post_book_status" time="0.004"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_4', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F841E18&gt;), kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_get_book_response_status" time="0.004"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_5', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F7A9D90&gt;), kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_get_book_response_data" time="0.007"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_6', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F7A9C80&gt;), kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_put_book_response_status" time="0.011"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_7', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F7A96A8&gt;), kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_put_book_response_data" time="0.005"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_8', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F7A9EA0&gt;), kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_delete_book_response_status" time="0.006"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_9', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F7A9BF8&gt;), kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_delete_book_response_data" time="0.006"><error message="failed on setup with &quot;AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.&#10;To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.&quot;">@pytest.fixture
+    def client():
+        db_fd, db_path = tempfile.mkstemp()
+&gt;       app = create_app(config_env="testing")
+
+test_app_pytest.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+__init__.py:47: in create_app
+    initialize_app(flask_app)
+__init__.py:17: in initialize_app
+    api_v1.add_namespace(ns_books)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:426: in add_namespace
+    self.register_resource(ns, r.resource, *urls, **r.kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:264: in register_resource
+    self._register_view(self.app, resource, namespace, *urls, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:301: in _register_view
+    self.blueprint_setup.add_url_rule(url, view_func=resource_func, **kwargs)
+..\..\..\flask_app_ed\venv\lib\site-packages\flask_restplus\api.py:729: in _blueprint_setup_add_url_rule_patch
+    view_func, defaults=defaults, **options)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Flask 'app'&gt;, args = ('/api/v1/books/', 'api_v1.books_books_list_10', &lt;function View.as_view.&lt;locals&gt;.view at 0x000001A28F816F28&gt;)
+kwargs = {'defaults': {}, 'subdomain': None}
+
+    def wrapper_func(self, *args, **kwargs):
+        if self.debug and self._got_first_request:
+            raise AssertionError(
+&gt;               "A setup function was called after the "
+                "first request was handled.  This usually indicates a bug "
+                "in the application where a module was not imported "
+                "and decorators or other functionality was called too late.\n"
+                "To fix this make sure to import all your view modules, "
+                "database models and everything related at a central place "
+                "before the application starts serving requests."
+            )
+E           AssertionError: A setup function was called after the first request was handled.  This usually indicates a bug in the application where a module was not imported and decorators or other functionality was called too late.
+E           To fix this make sure to import all your view modules, database models and everything related at a central place before the application starts serving requests.
+
+..\..\..\flask_app_ed\venv\lib\site-packages\flask\app.py:90: AssertionError</error></testcase><testcase classname="flask_app_ed.app.test_app_pytest" name="test_calculate[1-11]" time="0.003" /><testcase classname="flask_app_ed.app.test_app_pytest" name="test_calculate[2-22]" time="0.004" /><testcase classname="flask_app_ed.app.test_app_pytest" name="test_calculate[3-44]" time="0.004"><failure message="assert (11 * 3) == 44">num = 3, result = 44
+
+    @pytest.mark.parametrize("num, result", [(1, 11), (2, 22), (3,44)])
+    def test_calculate(num, result):
+&gt;       assert 11 * num == result
+E       assert (11 * 3) == 44
+
+test_app_pytest.py:146: AssertionError</failure></testcase></testsuite></testsuites>

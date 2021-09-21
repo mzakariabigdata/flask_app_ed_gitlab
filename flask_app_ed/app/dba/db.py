@@ -11,3 +11,6 @@ from flask.cli import with_appcontext
 def add(book):
     db.session.add(book)
     db.session.commit()
+
+def init_db():
+    pass

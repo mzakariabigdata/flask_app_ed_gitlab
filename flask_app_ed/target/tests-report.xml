@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="0" hostname="DESKTOP-21C46J1" name="pytest" skipped="0" tests="1" time="0.729" timestamp="2021-09-21T16:25:54.892908"><testcase classname="flask_app_ed.test_app" name="test_root_front" time="0.037" /></testsuite></testsuites>
