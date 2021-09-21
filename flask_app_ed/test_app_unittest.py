@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 import click
 
-from dba.models import Book
+from app.dba.models import Book
 
 
 # class TestAPI_v1(unittest.TestCase):
@@ -96,17 +96,17 @@ class TestFront(unittest.TestCase):
         db.drop_all()
         cls.app_ctx.pop()
 
-    def test_home_route(self):
-        resp = self.app_test_client.get("/")
-        self.assertEqual(resp.status_code, 200)
+    # def test_home_route(self):
+    #     resp = self.app_test_client.get("/")
+    #     self.assertEqual(resp.status_code, 200)
 
-    def test_zak_route(self):
-        resp = self.app_test_client.get("/zak")
-        self.assertEqual(resp.status_code, 200)
+    # def test_zak_route(self):
+    #     resp = self.app_test_client.get("/zak")
+    #     self.assertEqual(resp.status_code, 200)
 
-    def test_mor_route(self):
-        resp = self.app_test_client.get("/mor")
-        self.assertEqual(resp.status_code, 200)
+    # def test_mor_route(self):
+    #     resp = self.app_test_client.get("/mor")
+    #     self.assertEqual(resp.status_code, 200)
 
     @unittest.skip("demonstrating skipping")
     def test_nothing(self):

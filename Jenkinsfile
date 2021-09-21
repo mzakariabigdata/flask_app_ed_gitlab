@@ -53,7 +53,7 @@ pipeline {
                         sh '''
                         . venv/bin/activate
                         pip install -r tests/requirements.txt
-                        python -m pytest flask_app_ed/app/test_app_pytest.py --junitxml=target/tests-report.xml  --cov-report term --cov-report xml:target/coverage-report.xml  --cov=app
+                        python -m pytest flask_app_ed/test_app_unittest.py --junitxml=target/tests-report.xml  --cov-report term --cov-report xml:target/coverage-report.xml  --cov=app
                         '''
                         // python -m pytest tests/ --junitxml=target/tests-report.xml  --cov-report term --cov-report xml:target/coverage-report.xml  --cov=app
 
