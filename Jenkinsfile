@@ -85,6 +85,10 @@ pipeline {
                         if(params.USE_SONAR) {
 
                             echo 'Test Quality'
+                            sh '''
+                            ls -l flask_app_ed
+                            ls -l target
+                            '''
                             withSonarQubeEnv(installationName: 'sq1'){
                                     sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." '
                             }
@@ -130,14 +134,18 @@ pipeline {
                 python setup.py sdist
                 '''
             }
-            post {
-                success {
-                    archiveArtifacts 'flask_app_ed/dist/*'
-                }
-            }
+            // post {
+            //     success {
+            //         archiveArtifacts 'flask_app_ed/dist/*'
+            //     }
+            // }
         }
         stage('Tag'){
             steps {
+                sh '''
+                ls -l flask_app_ed
+                ls -l target
+                '''
                 echo 'Test Tag 1'
 
             }
@@ -173,14 +181,17 @@ pipeline {
             agent {
                 docker {
                 image 'releases-docker.jfrog.io/jfrog/jfrog-cli-v2:2.2.0' 
-                reuseNode true
+                // reuseNode true
                 }
             }
             steps {
                 echo 'Upload to Artifactory'
                 sh 'pwd'
-                sh 'ls -l'
-                sh 'jfrog rt upload --url http://172.26.229.230:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} flask_app_ed/dist/* flask_app_ed_gitlab'
+                sh '''
+                ls -l flask_app_ed
+                ls -l target
+                '''
+                // sh 'jfrog rt upload --url http://172.26.229.230:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} flask_app_ed/dist/* flask_app_ed_gitlab'
             }
         }
 
