@@ -145,6 +145,7 @@ pipeline {
         stage('Tag'){
             steps {
                 sh '''
+                ls -l flask_app_ed/dist
                 ls -l flask_app_ed
                 ls -l target
                 '''
