@@ -194,7 +194,7 @@ pipeline {
                 ls -l flask_app_ed/dist
                 ls -l target
                 '''
-                sh 'jfrog rt upload --url http://172.22.56.233:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} flask_app_ed/dist/* flask_app_ed_gitlab'
+                sh "jfrog rt upload --url http://172.22.56.233:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} 'flask_app_ed/dist/Flask App Ed-1.6.dev20210923.tar.gz' flask_app_ed_gitlab"
             }
         }
 
