@@ -4,3 +4,4 @@ venv
 flask_app_ed/build/
 flask_app_ed/dist/
 flask_app_ed/Flask_App_Ed.egg-info/*
+flask_app_ed/dist/
