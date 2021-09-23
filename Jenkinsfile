@@ -134,7 +134,6 @@ pipeline {
                 cd flask_app_ed
                 pip install -e .
                 python setup.py sdist
-                ls -l flask_app_ed/dist
                 '''
             }
             // post {
