@@ -41,7 +41,7 @@ sudo docker run --detach \
 root ZSJ/OvZAPShCXTUHFKmmor19++bCFf6D56FAnBg9dLk=
 token jenkins-api xMVsWqzwCXXmMBE83ynD
 gitlab_root_project CQdgiV2jmPfg78Rxcboy
-#### nexus
+#### nexus 
   docker run -d -p 8081:8081 --name nexus sonatype/nexus3
 #### send mail (https://sendgrid.com/)
 ### install plugin
