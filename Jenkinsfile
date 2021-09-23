@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage('Checkout'){
             steps{
-                git branch: 'main', credentialsId: 'root_gitlab', url: 'http://172.26.229.230/root/flask_app_ed_gitlab.git'
+                git branch: 'main', credentialsId: 'root_gitlab', url: 'http://172.22.56.233/root/flask_app_ed_gitlab.git'
             }
         }
         
@@ -95,7 +95,7 @@ pipeline {
                                     sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.tests=target/tests-report.xml" -D"sonar.python.coverage.reportPaths=target/coverage-report.xml" -D"sonar.sources=flask_app_ed/app" '
                             }
                             // bnp function
-                            // sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." -D"sonar.host.url=http://172.26.229.230:9000" -D"sonar.login=1f997e8aeffefaa2659eab04955f631960602389"'
+                            // sh 'sonar-scanner -D"sonar.projectKey=flask_app_ed_gitlab" -D"sonar.sources=." -D"sonar.host.url=http://172.22.56.233:9000" -D"sonar.login=1f997e8aeffefaa2659eab04955f631960602389"'
                             // def qg = waitForQualityGate()
                             // if (qg.status != 'OK') {
                             //     error "Pipeline aborted due to quality gate failure: ${qg.status}"
@@ -194,7 +194,7 @@ pipeline {
                 ls -l flask_app_ed/dist
                 ls -l target
                 '''
-                sh 'jfrog rt upload --url http://172.26.229.230:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} flask_app_ed/dist/* flask_app_ed_gitlab'
+                sh 'jfrog rt upload --url http://172.22.56.233:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} flask_app_ed/dist/* flask_app_ed_gitlab'
             }
         }
 
