@@ -2,6 +2,7 @@ from flask_restplus import Resource, Namespace
 from flask import request, jsonify
 import requests
 from app.api.restplus import api_v1
+from app.api.restplus import token_required
 from app.dba.models import Book
 from app.api.book.api_definition import book_def
 from app.api.book.domain_logic import create_book
@@ -11,10 +12,12 @@ from sqlalchemy.exc import OperationalError
 
 ns_books = Namespace('books', description = "Books operations")
 
+@ns_books.doc(security='apikey')
 @ns_books.route('/')
 class BooksList(Resource):
     
     @api_v1.marshal_with(book_def)
+    # @token_required
     def get(self):
         """
         returns a list of books
