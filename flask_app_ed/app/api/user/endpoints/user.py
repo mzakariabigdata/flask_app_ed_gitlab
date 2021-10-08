@@ -33,7 +33,7 @@ class UserLogin(Resource):
             return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
         if check_password_hash(user.password, auth.password):
-            token = jwt.encode({'public_id' : user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'SECRET_KEY', algorithm="HS256")
+            token = jwt.encode({'public_id' : user.public_id, 'user_id' : user.id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'SECRET_KEY', algorithm="HS256")
             return jsonify({'token' : token})
 
         return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
@@ -42,7 +42,7 @@ class UserLogin(Resource):
 @ns_users.doc(security='apikey')
 class UsersList(Resource):
     
-    @api_v1.marshal_with(user_get_def)
+    @api_v1.marshal_with(user_get_def, envelope='data')
     @token_required
     def get(current_user, self):
         """
@@ -54,10 +54,17 @@ class UsersList(Resource):
 
 
         try:
-            res = User.query.all()
+            page = request.args.get('page', 1, type=int)
+            per_page = request.args.get('per_page', 2, type=int)
+
+            res = User.query.paginate(per_page=2)
+            print(res)
+            print(res.pages, res.page)
+            # res = User.query.all()
         except NoResultFound as e:
             return None, 404
-        return res
+        
+        return res.items , {"page": page, "per_page": per_page}
     
     @api_v1.expect(user_post_def)
     def post(self):
