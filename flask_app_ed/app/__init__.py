@@ -2,15 +2,18 @@ from flask import Flask, Blueprint, blueprints, request
 from app.api.restplus import api_v1, api_v2
 from app.api.book.endpoints.book import ns_books
 from app.api.user.endpoints.user import ns_users
-from flask_migrate import Migrate
 from app.dba.models import db
 from app import config_app
 import os
 
+# Extention
+from flask_session import Session
+from flask_migrate import Migrate
+import redis
+from app.ext.cache_ext import cache
+
 migrate = Migrate()
-
-
-
+session = Session()
 
 def initialize_app(flask_app):
     
@@ -30,7 +33,8 @@ def initialize_app(flask_app):
     
 
     db.init_app(flask_app)
-
+    session.init_app(flask_app)
+    cache.init_app(flask_app)
     migrate.init_app(flask_app, db)
 
     @flask_app.route('/')
@@ -49,7 +53,12 @@ def configure_app(app):
     basedir = os.path.abspath(os.path.dirname(__file__))
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + os.path.join(basedir, "app.sqlite")
     app.config['DATABASE'] = "app.sqlite"
-    app.config['SECRET_KEY']
+    app.config['SECRET_KEY'] = 'SECRET_KEY'
+    # app.config['SESSION_REDIS'] = '127.0.0.1:6379'
+    app.config['SESSION_REDIS'] = redis.Redis("127.0.0.1")
+    app.config['SESSION_TYPE'] = 'redis'
+    app.config['CACHE_TYPE'] = 'RedisCache'
+    app.config['CACHE_REDIS_URL'] = 'redis://127.0.0.1:6379/2'
 
 def create_app(debug=False, config_env='development'):
     """ Create an application """

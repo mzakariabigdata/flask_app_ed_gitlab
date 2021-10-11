@@ -8,6 +8,8 @@ from app.dba.models import User
 from app.api.user.api_definition import user_post_def, user_get_def
 from app.api.user.domain_logic import create_user
 from app.dba.models import db
+from flask import session
+from app.ext.cache_ext import cache
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import OperationalError
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -19,7 +21,20 @@ ns_users = Namespace('users', description = "users operations")
 @ns_users.route('/login')
 class UserLogin(Resource):
     def get(self):
-        return True, 200
+        auth = request.authorization
+
+        if not auth or not auth.username or not auth.password:
+            return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
+
+        user = User.query.filter_by(name=auth.username).first()
+
+        if not user:
+            return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
+
+        cach = cache.get(str(user.id))
+        session[user.id] = cach
+        # print(user.id, cach)
+        return cach, 200
     
     def post(self):
         auth = request.authorization
@@ -33,7 +48,9 @@ class UserLogin(Resource):
             return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
         if check_password_hash(user.password, auth.password):
-            token = jwt.encode({'public_id' : user.public_id, 'user_id' : user.id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, 'SECRET_KEY', algorithm="HS256")
+            token = jwt.encode({'public_id' : user.public_id, 'user_id' : user.id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=1)}, 'SECRET_KEY', algorithm="HS256")
+            session[user.id] = token
+            cache.set(str(user.id), token)
             return jsonify({'token' : token})
 
         return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
@@ -60,11 +77,20 @@ class UsersList(Resource):
             res = User.query.paginate(per_page=2)
             print(res)
             print(res.pages, res.page)
+            metadata = {
+            "pages": res.pages, 
+            "page": res.page,
+            "total_count": res.total,
+            "prev_page": res.prev_num,
+            "next-page": res.next_num,
+            "has_next": res.has_next,
+            "has_prev": res.has_prev
+            }
             # res = User.query.all()
         except NoResultFound as e:
             return None, 404
         
-        return res.items , {"page": page, "per_page": per_page}
+        return res.items , metadata
     
     @api_v1.expect(user_post_def)
     def post(self):
