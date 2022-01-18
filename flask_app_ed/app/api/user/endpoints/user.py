@@ -3,7 +3,6 @@ from flask_restplus import Resource, Namespace
 from flask import request, jsonify, make_response
 import requests
 from app.api.restplus import api_v1
-from app.api.restplus import token_required
 from app.dba.models import User
 from app.api.user.api_definition import user_post_def, user_get_def
 from app.api.user.domain_logic import create_user
@@ -14,6 +13,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.exc import OperationalError
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
+from app.api.restplus import deco_test, token_required
 import jwt
 
 ns_users = Namespace('users', description = "users operations")
@@ -33,6 +33,7 @@ class UserLogin(Resource):
 
         cach = cache.get(str(user.id))
         session[user.id] = cach
+        print(f"UserLogin get {cach} {type(cach)}")
         # print(user.id, cach)
         return cach, 200
     
@@ -48,9 +49,10 @@ class UserLogin(Resource):
             return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
         if check_password_hash(user.password, auth.password):
-            token = jwt.encode({'public_id' : user.public_id, 'user_id' : user.id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=1)}, 'SECRET_KEY', algorithm="HS256")
+            token = jwt.encode({'public_id' : user.public_id, 'user_id' : user.id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=3)}, 'SECRET_KEY', algorithm="HS256")
             session[user.id] = token
-            cache.set(str(user.id), token)
+            cache.set(str(user.id), token)  
+            print(f"UserLogin post {token} {type(token)}")
             return jsonify({'token' : token})
 
         return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
@@ -60,11 +62,15 @@ class UserLogin(Resource):
 class UsersList(Resource):
     
     @api_v1.marshal_with(user_get_def, envelope='data')
+    @api_v1.response(401, 'Unauthorized')
+    @api_v1.response(498, 'Signature has expired')
     @token_required
-    def get(current_user, self):
+    @deco_test
+    def get(deco, current_user, self):
         """
         returns a list of users
         """
+        print("UsersList")
         if not current_user.admin:
             print(current_user)
             return jsonify({'message' : 'Cannot perform that function!'})
@@ -82,7 +88,7 @@ class UsersList(Resource):
             "page": res.page,
             "total_count": res.total,
             "prev_page": res.prev_num,
-            "next-page": res.next_num,
+            "next_page": res.next_num,
             "has_next": res.has_next,
             "has_prev": res.has_prev
             }

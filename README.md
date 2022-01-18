@@ -22,7 +22,9 @@ vagrant reload
 install docker (doc https://docs.docker.com/engine/install/centos/)
 sudo  yum install ifconfig
 #### Jenkins (mount docker socket)
-    docker run -d --name jenkins -u root -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v /home/jenkins_home:/var/jenkins_home jenkins/jenkins
+	docker run  -u root -p 8087:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v /home/jenkins_home:/var/jenkins_home jenkins/jenkins:2.319.1-lts
+    
+	docker run -d --name jenkins -u root -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v /home/jenkins_home:/var/jenkins_home jenkins/jenkins
 #### SonarQube
     docker run -d --name sonarqube -p 9000:9000 
     admin root

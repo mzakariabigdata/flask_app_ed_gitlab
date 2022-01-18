@@ -32,20 +32,38 @@ def token_required(f):
 
         if 'x-access-token' in request.headers:
             token = request.headers['x-access-token']
-        
+            print("header")
+        print(f"token_required {token} {type(token)}")
         if not token:
+            print("token_required 54", token)
             print("a valid token is missing")
             return jsonify({'message': 'a valid token is missing'}), 401
+        
         try: 
+            print(f"token_required decode {token} {type(token)}")
+
             data = jwt.decode(token, 'SECRET_KEY', algorithms="HS256")
+            print(f"data: {data}")
+
             current_user = User.query.filter_by(public_id=data['public_id']).first()
             print(f"data: {data['public_id']}")
             print(f"data public_id: {data}")
             print(f"current_user: {current_user}")
-
+        except jwt.exceptions.ExpiredSignatureError:
+            return jsonify({'message' : 'Signature has expired !'}), 498
         except:
             return jsonify({'message' : 'Token is invalid!'}), 401
 
         return f(current_user, *args, **kwargs)
+
+    return decorator
+
+
+def deco_test(f):
+    @wraps(f)
+    def decorator(*args, **kwargs):
+        deco = "test deco zak"
+
+        return f(deco, *args, **kwargs)
 
     return decorator
